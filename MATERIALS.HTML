@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="https://lh3.googleusercontent.com/_ijIQ4P6dwV8NOvAPdp6GoQyObHjf25TalgOjR4m9ciWiYdCL4wipMwT0bAWM2uLliyXPfqu1yjvqwUr=s265-w265-h265">
+    <style>
+        body, button, input {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #393e46;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        header {
+            background: #393e46;
+            color: #fff;
+            padding: 1rem 5vh 1rem 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: transform 0.5s, opacity 0.5s;
+            display: flex;
+            justify-content: flex-end; /* Align content to the right */
+            align-items: right; /* Align items vertically */
+            box-sizing: border-box;
+            gap: 24px;
+        }
+        header.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .header-button {
+            text-align: center;
+            border: solid 0px #ffffff;
+            background-color: #393e46;
+            color: #ffffff;
+            font-weight: bold;
+            height: 45px;
+            width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+            transition: all 0.5s;
+        }
+        .header-button:not(.b-menu):hover {
+            color: #0b0d0f;
+            background-color: #EEEEEE;
+            transition: all 0.5s;
+            font-weight: bold;
+            height: 55px;
+            width: 55px;
+            box-shadow: 0 0 8px 8px #EEEEEE;
+            border-radius: 100px;
+        }
+        .b-menu {
+            border-radius: 5px;
+        }
+        .b-menu:hover {
+            color: #0b0d0f;
+            background-color: #EEEEEE;
+            transition: all 0.2s;
+            font-weight: bold;
+            height: 55px;
+            width: 55px;
+            box-shadow: 0 0 6px 6px #EEEEEE;
+            border-radius: 5px;
+            transition: all 0.5s;
+        }
+        .header-img:not(.head-menu) {
+            border-radius: 50px;
+            transition: all 0.5s;
+            height: 45px;
+            width: 45px;
+            display: inline-block;
+        }
+        .head-menu {
+            border-radius: 0px;
+            transition: all 0.5s;
+            height: 45px;
+            width: 45px;
+            display: inline-block;
+        }
+        .header-img:hover {
+            height: 55px;
+            width: 55px;
+            transition: all 0.5s;
+        }
+        footer {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 0;
+            margin: 0; 
+            background: #393e46;
+            color: #fff;
+            text-align: center;
+            border: none;
+            box-sizing: border-box;
+        }
+        nav {
+            background: #444;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+       .MAIN:not(.MENU-ITEM) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            gap: 80px;
+        }
+        .MENU-ITEM:not(.item-img):not(.costom):not(.select-B) {
+            display: flex;
+            flex-direction: column;        /* or block, but not inline-block */
+            align-items: center; 
+            justify-content: center;
+        }
+        .item-img .costom .select-B {
+            display: flex;
+            flex-direction: row;          /* or block, but not inline-block */
+            align-items: center; 
+        }
+        .MENU-ITEM {
+            width: 60% !important;
+            justify-content: center;
+            border-radius: 15px;
+            background: #EEEEEE;
+            box-shadow: 0 2px 8px #FFC72C55;
+            box-sizing: border-box;
+            transition: 0.5s;
+            box-shadow: 0 0 4px 4px #EEEEEE;
+            margin: 1vh auto; /* centers the item */
+        }
+        .MENU-ITEM:hover {
+            transform: scale(1.05);
+            transition: 1s;
+            box-shadow: 0 0 16px 4px #EEEEEE;
+        }
+        .MENU-ITEM img {
+            align-items: center; /* centers vertically */
+            margin-left: 5vh !important;
+            width: 20vh;
+            height: 20vh;
+            aspect-ratio: 1/1;
+            border-radius: 50px;
+            background: #fff;
+            border: 0px solid #393e46;
+            align-items: center;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 0 10px 10px #ffffff;
+            /* box-shadow: 0 4px 16px rgb(0, 0, 0); */
+        }
+        .Featured, .Featured:hover {
+            box-shadow: 0 0 16px 4px #EEEEEE;
+            transition: 1s;
+        }
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin: 0 auto;
+            max-width: 160px;
+            width: 100%;
+            height: auto;
+            border-radius: 100%;
+            transition: 0.5s;
+        }
+        .logo:hover {
+            display: flex;
+            margin: 0 auto;
+            width: 120%;
+            max-width: 220px;
+            height: auto;
+            transition: 1s;
+        }
+        .logo.enlarged {
+            width: 120%;
+            max-width: 220px;
+            transition: 0.5s;
+        }
+        .menu-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            font-size: 1.3rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background: #E0E0E0;
+            color: #222;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+        .menu-options:hover {
+            transform: scale(1.1);
+            transition: 0.25s;
+        }
+        .menu-options:focus {
+            transform: scale(1.1);
+            transition: 0.25s;
+        }
+        .h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        h2 {
+            margin-top: 5vh;
+            font-size: 2rem;
+            color: #393e46;
+            font-weight: bold;
+        }
+        .select-B {
+            margin-right: 5vh !important;
+            margin-left: 60%;
+            width: 40% !important;
+            max-width: 200px !important;
+            height: auto;
+            background-color: #EEEEEE;
+            color: #393e46;
+            border: 2px solid #393e46;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transition : 0.5s;
+        }
+        .select-B:hover {
+            background-color: #393e46;
+            color: #EEEEEE;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px 2px #EEEEEE;
+            transition : 0.5s;
+        }
+        .profile {
+            border-radius: 0px !important;
+        }
+        /* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hide completely (width + some extra) */
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  padding: 24px;
+}
+.sidebar.open {
+  right: 0;
+}
+    </style>
+    <style>
+    </style>
+</head>
+<body>
+    <main class="MAIN">
+    <header class="HEADER">
+        <a href="EX1-CART.HTML">
+        <button class="header-button b-cart"><img src="https://raw.githubusercontent.com/Epic-SquidWard/A-D-WEB-DEV-EX/refs/heads/main/icons/bag.png" alt="Cart" class="header-img cart"></button>
+        </a>
+        <a href="HOME.HTML">
+            <button class="header-button b-menu"><img src="https://raw.githubusercontent.com/Epic-SquidWard/A-D-WEB-DEV-EX/refs/heads/main/home.png" alt="Nav" class="header-img head-menu"></button> 
+        </a>
+    </header>
+    <br><br><br>
+    <main class="MAIN">
+            <img src="https://lh3.googleusercontent.com/_ijIQ4P6dwV8NOvAPdp6GoQyObHjf25TalgOjR4m9ciWiYdCL4wipMwT0bAWM2uLliyXPfqu1yjvqwUr=s265-w265-h265" class="logo">
+        <select id="menu-dropdown" class="menu-options">
+            <option value="DEFAULT">All Materials</option>
+            <option class="MULCH" value="Mulch">Mulch</option>
+            <option class="FLAGSTONE" value="Flagstone">Flagstone</option>
+            <option class="SIDE McNuggets Fry" value="McNuggets-Fries">McNuggets & Fries</option>
+            <option class="BEVERAGES" value="Beverages">Beverages</option>
+        </select>
+    </main>
+    <style>
+    /* Add this CSS to make buttons inline with the image */
+    .MENU-ITEM:not(.item-img){
+        width: 50vh !important;
+        height: auto;
+        flex-direction: row !important;
+        align-items: center !important;
+        padding: 3% 0;
+        justify-content: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .item-img {
+        margin-right: 4% !important;
+    }
+    .MENU-ITEM {
+        margin: 10%;
+        margin-bottom: 2.5% !important;
+        padding-left: 5%;
+    }
+    .MENU-ITEM > .costom,
+    .MENU-ITEM > .select-B {
+        margin: 0;
+    } 
+
+    .MENU-ITEM > .item-img {
+    margin: 0 !important;
+    }
+    /* Ensure MENU-ITEM contents stay inside on small screens */
+    .MENU-ITEM:not(.item-img) {
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 3% 0;
+    }
+    .MENU-ITEM {
+        width: 60% !important;
+        padding-left: 0;
+        margin: 2% auto !important;
+        padding: 1rem 1rem 5vh 1rem;
+    }
+    .MENU-ITEM > .item-img {
+        margin: 0 !important;
+        margin-bottom: 2vh !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 40vw !important;
+        max-width: 220px !important;
+        height: auto !important;
+    }
+    .MENU-ITEM > .item-name {
+        margin: 0 0 2vh 0;
+        width: 90vw;
+        max-width: 320px;
+    }
+    .MENU-ITEM > .costom,
+    .MENU-ITEM > .select-B {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 80vw !important;
+        max-width: 220px !important;
+    }
+
+    .MENU-ITEM > .item-img {
+        margin-left: 4% !important;
+        margin-right: 4% !important;
+    }
+
+    .MENU-ITEM > .item-name {
+        margin-right: 3%;
+        text-align: center;
+        width: auto;
+        display: block;
+    }
+    .MAIN {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100%;
+    }
+    .MENU-ITEM > .costom,
+    .MENU-ITEM > .select-B {
+        margin-left: 0px;
+        margin-bottom: 0;
+    }
+    </style>
+    <style>
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+    @media (max-width: 1030px) {
+        .MENU-ITEM:not(.item-img) {
+            flex-direction: column !important;
+            align-items: center !important;
+            padding: 3% 0;
+        }
+        .MENU-ITEM {
+            width: 60% !important;
+            padding-left: 0;
+            margin: 2% auto !important;
+            padding: 1rem 1rem 5vh 1rem !important;
+        }
+        .row {
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 60% !important;
+            padding-left: 0;
+            margin: 2% auto !important;
+            padding: 1rem 1rem 5vh 1rem;
+            gap: 24px !important;
+            margin-bottom: 0px !important;
+        }
+        .MENU-ITEM > .item-img {
+            margin: 0 !important;
+            margin-bottom: 2vh !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: 40vw !important;
+            max-width: 220px !important;
+            height: auto !important;
+        }
+        .MENU-ITEM > .item-name {
+            margin: 0 0 2vh 0;
+            width: 90vw;
+            max-width: 320px;
+        }
+        .MENU-ITEM > .costom,
+        .MENU-ITEM > .select-B {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: 80vw !important;
+            max-width: 220px !important;
+        }
+    }
+    .row {
+            flex-wrap: wrap;
+        }
+    </style>
+    <div id="cart" class="cart-open" onclick="closeModal(event)">
+        <div class="cart-content">
+            <!-- You can add content here -->
+        </div>
+    </div>
+    
+
+<!-- Sidebar -->
+<div id="cartSidebar" class="cart-sidebar">
+  <div class="cart-sidebar-header">
+    <span class="cart-title">Your Materials</span>
+    <button id="closeSidebar" class="cart-close-btn" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-sidebar-content" id="cart-items"></div>
+  <button id="checkout" class="checkout-btn" style="margin: 20px; padding: 10px; background-color: #EEEEEE; font-weight: bold; color: #393e46; border: 2px #393e46; border-radius: 5px; cursor: pointer;">Save To Material List</button>
+</div>
+
+<style>
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100%;
+  background: #535354;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.12);
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  z-index: 2000;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+.cart-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cart-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0 4px;
+}
+.cart-close-btn:hover {
+  color: #222;
+}
+
+.cart-sidebar-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  color: #ffffff;
+  font-size: 1rem;
+}
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  background: #f7f7f7;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-right: 16px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+.cart-item-details {
+  flex: 1;
+}
+.cart-item-name {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #000000;
+}
+.cart-item-options {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.97em;
+  color: #555;
+}
+</style>
+    <h1 style="font-family: Georgia; font-weight: bold;" class="h1 Mulch">MULCH</h1>
+    <div class="row Mulch">
+      <div class="MENU-ITEM Mulch" id="tripple-ground-mulch-1">
+        <img class="item-img" src="https://github.com/Epic-SquidWard/edgewood-media/blob/main/20250603_102849-280x280.jpg?raw=true" id="Tripple-Ground-Mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Tripple Ground Mulch</h2><br>
+        <button class="select-B" 
+      data-item="Tripple Ground Mulch" 
+      style="font-family: Georgia; font-weight: bold;" 
+      value="tripple-ground-mulch-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Mulch Featured" id="red-mulch-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/Red-Color-Mulch-280x280.jpg" id="red-mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Red Mulch</h2><br>
+        <button class="select-B" 
+        data-item="Red Mulch" style="font-family: Georgia; font-weight: bold;" value="red-mulch-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Mulch" id="black-mulch-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/Black-Mulch-1-280x280.jpg" id="black-mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Black Mulch</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="black-mulch-1">Select</button><br>
+      </div>
+    </div>
+    <div class="row Mulch">
+      <div class="MENU-ITEM Mulch" id="brown-mulch-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/Brown-Color-Mulch-280x280.jpg" id="brown-mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Brown Mulch</h2><br><br><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="brown-mulch-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Mulch McValue" id="bark-mulch-s-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/Southern-Bark-Mulch-280x280.jpg" id="bark-mulch-s"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Southorn Bark Mulch</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="bark-mulch-s-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Mulch" id="dark-brown-mulch-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/Dark-Brown-Color-Mulch-280x280.jpg" id="dark-brown-mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Dark Brown Mulch</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="dark-brown-mulch-1">Select</button><br>
+      </div>
+    </div>
+      <div class="row Mulch">
+      <div class="MENU-ITEM Mulch" id="ground-wood-chips-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/03/20170412_112611_resized-247x247-1.jpg" id="ground-wood-chips"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Ground Wood Chips</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="ground-wood-chips-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Mulch" id="ruber-mulch-1">
+        <img class="item-img" src="https://83landscapesupply.com/wp-content/uploads/2025/04/Rubber-Mulch-Colors-280x280.jpg" id="rubber-mulch"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Rubber Mulch</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="ruber-mulch-1">Select</button><br>
+      </div>
+    </div>
+    <h1 style="font-family: Georgia; font-weight: bold;" class="h1 Flagstone">FLAGSTONE</h1>
+    <div class="row Flagstone">
+      <div class="MENU-ITEM Flagstone" id="stepper-white-mist-1">
+        <img class="item-img" src="https://lurveys.com/wp-content/uploads/QFLWHMIT.jpg" id="stepper-white-mist"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Flagstone White Mist</h2><br><br><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="stepper-white-mist-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Flagstone" id="Stepper-Idaho-Silver-1">
+        <img class="item-img" src="https://td6dsltn2v6p-u6621.pressidiumcdn.com/wp-content/uploads/QFLIS15T.jpg" id="Stepper-Idaho-Silver"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Stepper Idaho Silver</h2><br><br><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Stepper-Idaho-Silver-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Flagstone" id="stepper-eden-1">
+        <img class="item-img" src="https://td6dsltn2v6p-u6621.pressidiumcdn.com/wp-content/uploads/QFSEDT.jpg" id="stepper-eden"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Stepper Eden/FDL Gray LB</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="stepper-eden-1">Select</button><br>
+      </div>
+    </div>
+    <div class="row Flagstone">
+      <div class="MENU-ITEM Flagstone" id="Flagstone-Silver-Ridge-Granite-1">
+        <img class="item-img" src="https://lurveys.com/wp-content/uploads/QFLSIRITHGR150100BUN-500x500.jpg" id="Flagstone-Silver-Ridge-Granite"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Flagstone Silver Ridge Granite 1.5″</h2><br><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Flagstone-Silver-Ridge-Granite-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Flagstone" id="Flagstone-Chestnut/Sandy-Creek-1">
+        <img class="item-img" src="https://lurveys.com/wp-content/uploads/QFLCNT.jpg" id="Flagstone-Chestnut/Sandy-Creek"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Flagstone Chestnut/Sandy Creek</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Flagstone-Chestnut/Sandy-Creek-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Flagstone" id="Flagstone-Fossil-Creek-1">
+        <img class="item-img" src="https://td6dsltn2v6p-u6621.pressidiumcdn.com/wp-content/uploads/QFLFCT-2.jpg" id="Flagstone-Fossil-Creek"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Flagstone Fossil Creek</h2><br><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Flagstone-Fossil-Creek-1">Select</button><br>
+      </div>
+    </div>
+    <div class="row Flagstone">
+      <div class="MENU-ITEM Flagstone" id="Flagstone-Valders-Dove-White-Sandblasted-1">
+        <img class="item-img" src="https://lurveys.com/wp-content/uploads/QFLVASBDWT.jpg" id="Flagstone-Valders-Dove-White-Sandblasted"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Flagstone Valders Dove White Sandblasted</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Flagstone-Valders-Dove-White-Sandblasted-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Flagstone" id="Flagstone-Valders-Buff-Sandblasted-1">
+        <img class="item-img" src="https://lurveys.com/wp-content/uploads/QFLVASBBUT.jpg" id="Flagstone-Valders-Buff-Sandblasted"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Sausage Egg Cheese Bagel</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="Flagstone-Valders-Buff-Sandblasted-1">Select</button><br>
+      </div>
+    </div>
+    <h1  style="font-family: Georgia; font-weight: bold;" class="h1 McNuggets-Fries">McNuggets & Fries</h1>
+    <div class="row McNuggets-Fries">
+      <div class="MENU-ITEM McNuggets-Fries Featured" id="20pc-nug-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonaldsstage/DC_202008_0061_20McNuggets_Stacked_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="20pc-nug"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">20pc McNuggets</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="20pc-nug-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM McNuggets-Fries" id="4pc-nug-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202006_0483_4McNuggets_Stacked_1564x1564-1:nutrition-calculator-tile" id="4pc-nug"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">4pc McNuggets</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="4pc-nug-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM McNuggets-Fries" id="6pc-nug-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0060_6McNuggets_Broken_McValue_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="6pc-nug"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">6pc McNuggets</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="6pc-nug-1">Select</button><br>
+      </div>
+    </div>
+    <div class="row McNuggets-Fries">
+      <div class="MENU-ITEM McNuggets-Fries" id="SM-Fry-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_6050_SmallFrenchFries_Standing_McValue_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="SM-Fry"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Small Fry</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="SM-Fry-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM McNuggets-Fries" id="MD-Fry-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202002_8932_MediumFries_1564x1564-1:product-header-desktop?wid=1564&hei=1564&dpr=off" id="MD-Fry"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Medium Fry</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="MD-Fry-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM McNuggets-Fries" id="LG-Fry-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202002_6053_LargeFries_1564x1564-1:product-header-desktop?wid=1564&hei=1564&dpr=off" id="LG-Fry"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Large Fry</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="LG-Fry-1">Select</button><br>
+      </div>
+    </div>
+    <h1 style="font-family: Georgia; font-weight: bold;" class="h1 Beverages">Beverages</h1>
+    <div class="row Beverages">
+      <div class="MENU-ITEM Beverages" id="SM-Fountain-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202402_0521_MediumCoke_ContourGlassv1_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="SM-Fountain"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Small Fountain</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="SM-Fountain-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Beverages" id="MD-Fountain-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202402_0521_MediumCoke_ContourGlassv1_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="MD-Fountain"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Medium Fountain</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="MD-Fountain-1">Select</button><br>
+      </div>
+      <div class="MENU-ITEM Beverages" id="LG-Fountain-1">
+        <img class="item-img" src="https://s7d1.scene7.com/is/image/mcdonalds/DC_202402_0521_MediumCoke_ContourGlassv1_1564x1564:product-header-desktop?wid=1564&hei=1564&dpr=off" id="LG-Fountain"><br>
+        <h2 style="font-family: Georgia; font-weight: bold;" class="item-name">Large Fountain</h2><br>
+        <button class="select-B" id="select-B" style="font-family: Georgia; font-weight: bold;" value="LG-Fountain-1">Select</button><br>
+      </div>
+    </div>
+
+<!-- Customize Popup Modal -->
+<div id="customize-modal" class="customize-modal" style="display:none;">
+    <div class="customize-modal-content" style="background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); padding: 36px 28px; min-width: 340px; max-width: 95vw;">
+        <div class="customize-modal-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+            <h2 id="customize-title" style="font-family: Georgia, 'Roboto', Arial, sans-serif; font-size: 1.35rem; font-weight: bold; color: #393e46; margin: 0;"></h2>
+            <button id="closeCustomize" class="customize-close-btn" aria-label="Close" style="background: none; border: none; font-size: 2rem; color: #888; cursor: pointer; transition: color 0.2s;">&times;</button>
+        </div>
+        <form id="customize-form" style="display: flex; flex-direction: column; gap: 4px; padding: 0;"></form>
+            <!-- Dynamic options go here -->
+        </form>
+        <button id="addToCartBtn" type="button"
+            style="
+                margin-top: 18px;
+                width: 100%;
+                background: linear-gradient(90deg, #FFC72C 60%, #ffe57f 100%);
+                color: #393e46;
+                font-family: Georgia, 'Roboto', Arial, sans-serif;
+                font-weight: bold;
+                font-size: 1.1rem;
+                border: none;
+                border-radius: 8px;
+                padding: 14px 0;
+                box-shadow: 0 2px 8px #FFC72C33;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s, transform 0.2s;
+            "
+            onmouseover="this.style.background='#393e46';this.style.color='#FFC72C';this.style.transform='scale(1.03)'"
+            onmouseout="this.style.background='linear-gradient(90deg, #FFC72C 60%, #ffe57f 100%)';this.style.color='#393e46';this.style.transform='scale(1)'"
+        >Add to Cart</button>
+    </div>
+</div>
+<style>
+#customize-modal label {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 1.08rem;
+    color: #393e46;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
+}
+#customize-modal input[type="checkbox"] {
+    accent-color: #EEEEEE;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 1.5px solid #393e46;
+    transition: box-shadow 0.2s;
+}
+#customize-modal select {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 1.05rem;
+    border-radius: 6px;
+    border: 1.5px solid #EEEEEE;
+    padding: 6px 10px;
+    background: #f7f7f7;
+    color: #393e46;
+    margin-left: 8px;
+    transition: border 0.2s;
+}
+#customize-modal select:focus {
+    border: 1.5px solid #393e46;
+    outline: none;
+}
+.customize-close-btn:hover {
+    color: #EEEEEE !important;
+}
+@media (max-width: 600px) {
+    .customize-modal-content {
+        min-width: 90vw !important;
+        padding: 18px 6vw !important;
+    }
+    #customize-modal label {
+        font-size: 1rem;
+    }
+    #addToCartBtn {
+        font-size: 1rem !important;
+        padding: 12px 0 !important;
+    }
+}
+</style>
+
+<!-- Toast Notification Container -->
+<div id="cart-toast-container" style="position:fixed; bottom:32px; right:32px; z-index:5000; display:flex; flex-direction:column; align-items:flex-end; gap:12px;"></div>
+
+<style>
+.customize-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.cart-toast {
+  min-width: 220px;
+  max-width: 320px;
+  background: #fff;
+  color: #222;
+  font-family: 'Georgia', 'Roboto', Arial, sans-serif;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 0 16px 4px #EEEEEE, 0 2px 12px rgba(0,0,0,0.10);
+  padding: 18px 24px 18px 18px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(120%);
+  transition: opacity 0.3s, transform 0.4s cubic-bezier(.4,0,.2,1);
+  margin-top: 0;
+}
+.cart-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.cart-toast .toast-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #EEEEEE;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+</style>
+
+<script>
+function showCartToast(itemName) {
+  const container = document.getElementById('cart-toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'cart-toast';
+  toast.innerHTML = `<span>"${itemName}" added to your list</span><button class='toast-close' aria-label='Close'>&times;</button>`;
+  container.appendChild(toast);
+  // Animate in
+  setTimeout(() => toast.classList.add('show'), 10);
+
+  // Close on X click
+  toast.querySelector('.toast-close').onclick = function() {
+    toast.classList.remove('show');
+    setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+  };
+
+  // Auto-dismiss after 2 seconds
+  toast.dismissTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+  }, 2000);
+}
+</script>
+    <footer>
+        <p>&copy;EdgeWood Hardscapes LLC</p>
+    </footer>
+</body>
+</html>
+
+<script>
+const menuOptions = {
+  "BigMac": [
+    { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    { label: "Lettuce", name: "lettuce", type: "checkbox", checked: true },
+    { label: "Onion", name: "Onion", type: "checkbox", checked: true },
+    { label: "Pickles", name: "pickles", type: "checkbox", checked: true },
+    { label: "Tomato", name: "tomato", type: "checkbox", checked: false },
+    { label: "Extra Beef Patty", name: "extra_beef", type: "checkbox", checked: false },
+    { label: "Bacon", name: "bacon", type: "checkbox", checked: false },
+    { label: "Sauce", name: "sauce", type: "select", options: ["Regular", "Extra", "None"] }
+  ]
+    , "Quarter Pounder": [
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+        { label: "Lettuce", name: "lettuce", type: "checkbox", checked: true },
+        { label: "Onion", name: "onion", type: "checkbox", checked: true },
+        { label: "Pickles", name: "pickles", type: "checkbox", checked: true },
+        { label: "Tomato", name: "tomato", type: "checkbox", checked: false },
+        { label: "Extra Beef Patty", name: "extra_beef", type: "checkbox", checked: false },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: false },
+        { label: "Sauce", name: "sauce", type: "select", options: ["Regular", "Extra", "None"] }
+    ],
+    "McDouble": [
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+        { label: "Lettuce", name: "lettuce", type: "checkbox", checked: true },
+        { label: "Onion", name: "onion", type: "checkbox", checked: true },
+        { label: "Pickles", name: "pickles", type: "checkbox", checked: true },
+        { label: "Tomato", name: "tomato", type: "checkbox", checked: false },
+        { label: "Extra Beef Patty", name: "extra_beef", type: "checkbox", checked: false },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: false },
+        { label: "Sauce", name: "sauce", type: "select", options: ["Regular", "Extra", "None"] }
+    ],
+    "Cheese Burger": [
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+        { label: "Lettuce", name: "lettuce", type: "checkbox", checked: true },
+        { label: "Onion", name: "onion", type: "checkbox", checked: true },
+        { label: "Pickles", name: "pickles", type: "checkbox", checked: true },
+        { label: "Tomato", name: "tomato", type: "checkbox", checked: false },
+        { label: "Extra Beef Patty", name: "extra_beef", type: "checkbox", checked: false },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: false },
+        { label: "Sauce", name: "sauce", type: "select", options: ["Regular", "Extra", "None"] }
+    ],
+    "Double Cheese Burger": [
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+        { label: "Lettuce", name: "lettuce", type: "checkbox", checked: true },
+        { label: "Onion", name: "onion", type: "checkbox", checked: true },
+        { label: "Pickles", name: "pickles", type: "checkbox", checked: true },
+        { label: "Tomato", name: "tomato", type: "checkbox", checked: false },
+        { label: "Extra Beef Patty", name: "extra_beef", type: "checkbox", checked: false },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: false },
+        { label: "Sauce", name: "sauce", type: "select", options: ["Regular", "Extra", "None"] }
+    ]
+    , "Bacon Egg & Cheese Bagel": [
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ],  
+    "Bacon Egg & Cheese McGriddle": [
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ],
+    "Bacon Egg & Cheese Biscuit": [
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+        { label: "Bacon", name: "bacon", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ]
+    , "Egg McMuffin": [
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+    ],
+    "Sausage McMuffin": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+    ],
+    "Sausage McMuffin With Egg": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+    ]
+    , "Sausage Biscut": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+    ],
+    "Sausage & Egg biscut": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+    ],
+    "Sausage McGriddle": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ],
+    "Sausage Egg Cheese McGriddle": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ],
+    "Sausage Egg Cheese Bagel": [
+        { label: "Sausage", name: "sausage", type: "checkbox", checked: true },
+        { label: "Egg", name: "egg", type: "checkbox", checked: true },
+        { label: "Cheese", name: "cheese", type: "checkbox", checked: true },
+    ],
+    "20pc McNuggets": [
+        { label: "BBQ Sauce", name: "bbq_sauce", type: "checkbox", checked: true },
+        { label: "Sweet & Sour Sauce", name: "sweet_sour_sauce", type: "checkbox", checked: true },
+        { label: "Hot Mustard Sauce", name: "hot_mustard_sauce", type: "checkbox", checked: false },
+        { label: "Honey Mustard Sauce", name: "honey_mustard_sauce", type: "checkbox", checked: false }
+    ],
+    "4pc McNuggets": [
+        { label: "BBQ Sauce", name: "bbq_sauce", type: "checkbox", checked: true },
+        { label: "Sweet & Sour Sauce", name: "sweet_sour_sauce", type: "checkbox", checked: true },
+        { label: "Hot Mustard Sauce", name: "hot_mustard_sauce", type: "checkbox", checked: false },
+        { label: "Honey Mustard Sauce", name: "honey_mustard_sauce", type: "checkbox", checked: false }
+    ],
+    "6pc McNuggets": [
+        { label: "BBQ Sauce", name: "bbq_sauce", type: "checkbox", checked: true },
+        { label: "Sweet & Sour Sauce", name: "sweet_sour_sauce", type: "checkbox", checked: true },
+        { label: "Hot Mustard Sauce", name: "hot_mustard_sauce", type: "checkbox", checked: false },
+        { label: "Honey Mustard Sauce", name: "honey_mustard_sauce", type: "checkbox", checked: false }
+    ],
+    "Small Fry": [
+        { label: "salt", name: "salt", type: "checkbox", checked: true },
+        { label: "Ketchup", name: "ketchup", type: "checkbox", checked: false },
+    ],
+    "Medium Fry": [
+        { label: "salt", name: "salt", type: "checkbox", checked: true },
+        { label: "Ketchup", name: "ketchup", type: "checkbox", checked: false },
+    ],
+    "Large Fry": [
+        { label: "salt", name: "salt", type: "checkbox", checked: true },
+        { label: "Ketchup", name: "ketchup", type: "checkbox", checked: false },
+    ],
+    "Small Fountain": [
+        { label: "Ice", name: "ice", type: "checkbox", checked: true },
+        { label: "coke", name: "Coca Cola", type: "checkbox", checked: false },
+        { label: "Diet Coke", name: "Diet Coke", type: "checkbox", checked: false },
+        { label: "Sprite", name: "Sprite", type: "checkbox", checked: false },
+        { label: "Fanta Orange", name: "Fanta Orange", type: "checkbox", checked: false },
+        { label: "Dr Pepper", name: "Dr Pepper", type: "checkbox", checked: false },
+        { label: "Sweet Tea", name: "Sweet Tea", type: "checkbox", checked: false },
+        { label: "Unsweetened Iced Tea", name: "Unsweetened Iced Tea", type: "checkbox", checked: false },
+        { label: "Lemonade", name: "Lemonade", type: "checkbox", checked: false }
+    ],
+    "Medium Fountain": [
+        { label: "Ice", name: "ice", type: "checkbox", checked: true },
+        { label: "coke", name: "Coca Cola", type: "checkbox", checked: false },
+        { label: "Diet Coke", name: "Diet Coke", type: "checkbox", checked: false },
+        { label: "Sprite", name: "Sprite", type: "checkbox", checked: false },
+        { label: "Fanta Orange", name: "Fanta Orange", type: "checkbox", checked: false },
+        { label: "Dr Pepper", name: "Dr Pepper", type: "checkbox", checked: false },
+        { label: "Sweet Tea", name: "Sweet Tea", type: "checkbox", checked: false },
+        { label: "Unsweetened Iced Tea", name: "Unsweetened Iced Tea", type: "checkbox", checked: false },
+        { label: "Lemonade", name: "Lemonade", type: "checkbox", checked: false }
+    ],
+    "Large Fountain": [
+        { label: "Ice", name: "ice", type: "checkbox", checked: true },
+        { label: "coke", name: "Coca Cola", type: "checkbox", checked: false },
+        { label: "Diet Coke", name: "Diet Coke", type: "checkbox", checked: false },
+        { label: "Sprite", name: "Sprite", type: "checkbox", checked: false },
+        { label: "Fanta Orange", name: "Fanta Orange", type: "checkbox", checked: false },
+        { label: "Dr Pepper", name: "Dr Pepper", type: "checkbox", checked: false },
+        { label: "Sweet Tea", name: "Sweet Tea", type: "checkbox", checked: false },
+        { label: "Unsweetened Iced Tea", name: "Unsweetened Iced Tea", type: "checkbox", checked: false },
+        { label: "Lemonade", name: "Lemonade", type: "checkbox", checked: false }
+    ]
+};
+
+
+
+function openCustomizeModal(itemName) {
+  const modal = document.getElementById('customize-modal');
+  const form = document.getElementById('customize-form');
+  const title = document.getElementById('customize-title');
+  title.textContent = `Customize ${itemName}`;
+  form.innerHTML = '';
+
+  (menuOptions[itemName] || []).forEach(opt => {
+    let field = '';
+    if (opt.type === 'checkbox') {
+      field = `<label><input type="checkbox" name="${opt.name}"${opt.checked ? ' checked' : ''}> ${opt.label}</label><br>`;
+    } else if (opt.type === 'select') {
+      field = `<label>${opt.label}: <select name="${opt.name}">${opt.options.map(o => `<option>${o}</option>`).join('')}</select></label><br>`;
+    }
+    form.innerHTML += field;
+  });
+
+  modal.style.display = 'flex';
+}
+
+document.getElementById('addToCartBtn').onclick = function() {
+  const form = document.getElementById('customize-form');
+  const itemName = document.getElementById('customize-title').textContent.replace('Customize ', '');
+  const options = menuOptions[itemName] || [];
+  let selectedOptions = [];
+
+  options.forEach(opt => {
+    if (opt.type === 'checkbox') {
+      const input = form.querySelector(`input[name="${opt.name}"]`);
+      if (input && input.checked) selectedOptions.push(opt.label);
+    } else if (opt.type === 'select') {
+      const select = form.querySelector(`select[name="${opt.name}"]`);
+      if (select) selectedOptions.push(`${opt.label}: ${select.value}`);
+    }
+  });
+
+  addToCartWithImage(itemName, selectedOptions, currentItemImage || "https://via.placeholder.com/60");
+  document.getElementById('customize-modal').style.display = 'none';
+  // Only open sidebar if not mobile
+  if (window.innerWidth > 700) {
+    document.getElementById('cartSidebar').classList.add('open');
+  }
+};
+</script>
+<style>
+.customize-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.customize-modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 24px;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  position: relative;
+}
+.customize-close-btn {
+  position: absolute;
+  top: 8px; right: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+}
+.customize-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.customize-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+</style>
+<script>
+// Hide close and checkout button only on EX1-MENU.HTML
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.toUpperCase().includes('EX1-MENU.HTML')) {
+    // Hide the close button
+    document.querySelectorAll('.close-cart').forEach(el => el.style.display = 'none');
+    // Hide the checkout button
+    document.querySelectorAll('.checkout-btn').forEach(el => el.style.display = 'none');
+    // Hide the "Your Cart" heading
+    document.querySelectorAll('.cart-modal-content h2').forEach(el => el.style.display = 'none');
+  }
+});
+</script>
+<script>
+let currentItemImage = "";
+</script>
+<script>
+document.querySelectorAll('.select-B').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const itemDiv = btn.closest('.MENU-ITEM');
+    const img = itemDiv.querySelector('.item-img');
+    const itemNameElem = itemDiv.querySelector('.item-name');
+    const itemName = itemNameElem ? itemNameElem.textContent.trim() : "Item";
+    // Always get the image from the DOM to ensure it's correct
+    const imgSrc = img ? img.src : (typeof currentItemImage !== 'undefined' ? currentItemImage : "https://via.placeholder.com/60");
+
+    // Get default options from menuOptions
+    const options = menuOptions[itemName] || [];
+    let selectedOptions = [];
+    options.forEach(opt => {
+      if (opt.type === 'checkbox' && opt.checked) {
+        selectedOptions.push(opt.label);
+      } else if (opt.type === 'select') {
+        selectedOptions.push(`${opt.label}: ${opt.options[0]}`);
+      }
+    });
+
+    addToCartWithImage(itemName, selectedOptions, imgSrc);
+    if (window.innerWidth > 700) {
+      document.getElementById('cartSidebar').classList.add('open');
+    }
+  });
+});
+
+function addToCartWithImage(itemName, selectedOptions, imgSrc) {
+  const cartItems = document.getElementById('cart-items');
+  const optionsList = selectedOptions.map(opt => `<li>${opt}</li>`).join('');
+  const itemHTML = `
+    <div class="cart-item">
+      <img src="${imgSrc}" alt="${itemName}" class="cart-item-img">
+      <div class="cart-item-details">
+        <div class="cart-item-name">${itemName}</div>
+        <ul class="cart-item-options">${optionsList}</ul>
+      </div>
+    </div>
+  `;
+  cartItems.innerHTML += itemHTML;
+  showCartToast(itemName);
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Cart sidebar open/close
+  const cartLink = document.querySelector('a[href="EX1-CART.HTML"]');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const closeSidebar = document.querySelector('#cartSidebar .cart-close-btn');
+
+  if (cartLink && cartSidebar && closeSidebar) {
+    cartLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      cartSidebar.classList.add('open');
+    });
+    closeSidebar.addEventListener('click', function() {
+      cartSidebar.classList.remove('open');
+    });
+  }
+
+  // Customize modal open/close
+  document.querySelectorAll('.costom').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const itemDiv = btn.closest('.MENU-ITEM');
+      const img = itemDiv.querySelector('.item-img');
+      currentItemImage = img ? img.src : "https://via.placeholder.com/60";
+      const item = btn.getAttribute('data-item');
+      openCustomizeModal(item);
+    });
+  });
+
+  const closeCustomizeBtn = document.getElementById('closeCustomize');
+  if (closeCustomizeBtn) {
+    closeCustomizeBtn.onclick = function() {
+      document.getElementById('customize-modal').style.display = 'none';
+    };
+  }
+});
+</script>
+<script>
+document.getElementById('menu-dropdown').addEventListener('change', function() {
+  const selected = this.value;
+  const items = document.querySelectorAll('.row');
+  const headings = document.querySelectorAll('h1.h1');
+
+  items.forEach(row => {
+    if (selected === "DEFAULT") {
+      row.style.display = '';
+    } else {
+      if (row.classList.contains(selected)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  });
+
+  headings.forEach(h1 => {
+    if (selected === "DEFAULT") {
+      h1.style.display = '';
+    } else {
+      if (h1.classList.contains(selected)) {
+        h1.style.display = '';
+      } else {
+        h1.style.display = 'none';
+      }
+    }
+  });
+});
+</script>
