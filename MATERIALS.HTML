@@ -460,7 +460,7 @@
     <button id="closeSidebar" class="cart-close-btn" aria-label="Close cart">&times;</button>
   </div>
   <div class="cart-sidebar-content" id="cart-items"></div>
-  <button id="checkout" class="checkout-btn" style="margin: 20px; padding: 10px; background-color: #EEEEEE; font-weight: bold; color: #393e46; border: 2px #393e46; border-radius: 5px; cursor: pointer;">Save To Material List</button>
+  <button id="checkout" class="checkout-btn" style="margin: 20px; padding: 10px; background-color: #EEEEEE; font-weight: bold; color: #393e46; border: 2px #393e46; border-radius: 5px; cursor: pointer;" onclick="window.open('https://forms.gle/vrgjLD63ePq4Dh786', '_blank')">Submit Material List</button>
 </div>
 
 <style>
@@ -1214,23 +1214,4 @@ document.getElementById('menu-dropdown').addEventListener('change', function() {
     }
   });
 });
-// ...existing code...
-document.getElementById('checkout').onclick = function() {
-  // Gather cart items
-  const cartItems = Array.from(document.querySelectorAll('.cart-item')).map(item => {
-    return {
-      name: item.querySelector('.cart-item-name').textContent,
-      options: Array.from(item.querySelectorAll('.cart-item-options li')).map(li => li.textContent)
-    };
-  });
-
-  fetch('https://script.google.com/macros/s/AKfycbwmR4v7po3OwnlBBY2LdWVYXIhjfgs5HH60Sxwe238PfJgsEuzJGJpno8ns8UhtSal6/exec', { // <-- Use your actual web app URL here
-    method: 'POST',
-    body: JSON.stringify({items: cartItems}),
-    headers: {'Content-Type': 'application/json'}
-  })
-  .then(res => res.text())
-  .then(msg => alert('Material list sent!'))
-  .catch(err => alert('Error sending list.'));
-};
 </script>
